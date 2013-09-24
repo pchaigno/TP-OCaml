@@ -1,0 +1,384 @@
+"main.ml" 7 161 165 "main.ml" 7 161 172
+type(
+  Lexing.lexbuf -> Ulex.token list
+)
+ident(
+  def scanner "main.ml" 25 532 532 --
+)
+"main.ml" 7 161 173 "main.ml" 7 161 179
+type(
+  Lexing.lexbuf
+)
+ident(
+  def lexbuf "main.ml" 9 186 188 "main.ml" 21 497 528
+)
+"main.ml" 9 186 196 "main.ml" 9 186 207
+type(
+  int -> Ulex.token list -> Ulex.token list
+)
+"main.ml" 9 186 208 "main.ml" 9 186 209
+type(
+  int
+)
+ident(
+  def n "main.ml" 9 186 210 "main.ml" 19 484 491
+)
+"main.ml" 9 186 210 "main.ml" 9 186 211
+type(
+  Ulex.token list
+)
+ident(
+  def l "main.ml" 10 215 219 "main.ml" 19 484 491
+)
+"main.ml" 11 224 236 "main.ml" 11 224 247
+type(
+  Lexing.lexbuf -> Ulex.token
+)
+ident(
+  ext_ref Lexer.token
+)
+"main.ml" 11 224 248 "main.ml" 11 224 254
+type(
+  Lexing.lexbuf
+)
+ident(
+  int_ref lexbuf "main.ml" 7 161 173 "main.ml" 7 161 179
+)
+"main.ml" 11 224 236 "main.ml" 11 224 254
+type(
+  Ulex.token
+)
+"main.ml" 12 260 268 "main.ml" 12 260 274
+type(
+  Ulex.token
+)
+"main.ml" 12 260 268 "main.ml" 12 260 280
+type(
+  Ulex.token
+)
+ident(
+  def tk "main.ml" 12 260 285 "main.ml" 12 260 292
+)
+"main.ml" 12 260 286 "main.ml" 12 260 288
+type(
+  Ulex.token
+)
+ident(
+  int_ref tk "main.ml" 12 260 268 "main.ml" 12 260 280
+)
+"main.ml" 12 260 290 "main.ml" 12 260 291
+type(
+  Ulex.token list
+)
+ident(
+  int_ref l "main.ml" 9 186 210 "main.ml" 9 186 211
+)
+"main.ml" 12 260 285 "main.ml" 12 260 292
+type(
+  Ulex.token list
+)
+"main.ml" 13 293 303 "main.ml" 13 293 305
+type(
+  Ulex.token
+)
+ident(
+  def tk "main.ml" 13 293 311 "main.ml" 13 293 338
+)
+"main.ml" 13 293 311 "main.ml" 13 293 322
+type(
+  int -> Ulex.token list -> Ulex.token list
+)
+ident(
+  int_ref scanner_rec "main.ml" 9 186 196 "main.ml" 9 186 207
+)
+"main.ml" 13 293 324 "main.ml" 13 293 325
+type(
+  int
+)
+ident(
+  int_ref n "main.ml" 9 186 208 "main.ml" 9 186 209
+)
+"main.ml" 13 293 325 "main.ml" 13 293 326
+type(
+  int -> int -> int
+)
+ident(
+  ext_ref Pervasives.( + )
+)
+"main.ml" 13 293 326 "main.ml" 13 293 327
+type(
+  int
+)
+"main.ml" 13 293 323 "main.ml" 13 293 328
+type(
+  int
+)
+"main.ml" 13 293 330 "main.ml" 13 293 332
+type(
+  Ulex.token
+)
+ident(
+  int_ref tk "main.ml" 13 293 303 "main.ml" 13 293 305
+)
+"main.ml" 13 293 336 "main.ml" 13 293 337
+type(
+  Ulex.token list
+)
+ident(
+  int_ref l "main.ml" 9 186 210 "main.ml" 9 186 211
+)
+"main.ml" 13 293 329 "main.ml" 13 293 338
+type(
+  Ulex.token list
+)
+"main.ml" 13 293 311 "main.ml" 13 293 338
+type(
+  Ulex.token list
+)
+"main.ml" 11 224 230 "main.ml" 13 293 338
+type(
+  Ulex.token list
+)
+"main.ml" 14 340 347 "main.ml" 14 340 348
+type(
+  exn
+)
+ident(
+  def x "main.ml" 15 353 357 "main.ml" 19 484 491
+)
+"main.ml" 16 363 367 "main.ml" 16 363 380
+type(
+  (string -> int -> unit, out_channel, unit) format -> string -> int -> unit
+)
+ident(
+  ext_ref Printf.printf
+)
+"main.ml" 16 363 381 "main.ml" 16 363 442
+type(
+  (string -> int -> unit, out_channel, unit) format
+)
+"main.ml" 17 444 451 "main.ml" 17 444 469
+type(
+  exn -> string
+)
+ident(
+  ext_ref Printexc.to_string
+)
+"main.ml" 17 444 470 "main.ml" 17 444 471
+type(
+  exn
+)
+ident(
+  int_ref x "main.ml" 14 340 347 "main.ml" 14 340 348
+)
+"main.ml" 17 444 450 "main.ml" 17 444 472
+type(
+  string
+)
+"main.ml" 17 444 473 "main.ml" 17 444 474
+type(
+  int
+)
+ident(
+  int_ref n "main.ml" 9 186 208 "main.ml" 9 186 209
+)
+"main.ml" 16 363 367 "main.ml" 17 444 474
+type(
+  unit
+)
+"main.ml" 18 476 482 "main.ml" 18 476 483
+type(
+  Ulex.token list
+)
+ident(
+  int_ref l "main.ml" 9 186 210 "main.ml" 9 186 211
+)
+"main.ml" 15 353 357 "main.ml" 19 484 491
+type(
+  Ulex.token list
+)
+"main.ml" 10 215 219 "main.ml" 19 484 491
+type(
+  Ulex.token list
+)
+"main.ml" 21 497 501 "main.ml" 21 497 509
+type(
+  Ulex.token list -> Ulex.token list
+)
+ident(
+  ext_ref List.rev
+)
+"main.ml" 21 497 511 "main.ml" 21 497 522
+type(
+  int -> Ulex.token list -> Ulex.token list
+)
+ident(
+  int_ref scanner_rec "main.ml" 9 186 196 "main.ml" 9 186 207
+)
+"main.ml" 21 497 523 "main.ml" 21 497 524
+type(
+  int
+)
+"main.ml" 21 497 525 "main.ml" 21 497 527
+type(
+  Ulex.token list
+)
+"main.ml" 21 497 510 "main.ml" 21 497 528
+type(
+  Ulex.token list
+)
+"main.ml" 21 497 501 "main.ml" 21 497 528
+type(
+  Ulex.token list
+)
+"main.ml" 9 186 188 "main.ml" 21 497 528
+type(
+  Ulex.token list
+)
+"main.ml" 27 607 613 "main.ml" 27 607 619
+type(
+  Lexing.lexbuf
+)
+ident(
+  def lexbuf "main.ml" 30 695 697 "main.ml" 34 847 871
+)
+"main.ml" 27 607 622 "main.ml" 27 607 641
+type(
+  in_channel -> Lexing.lexbuf
+)
+ident(
+  ext_ref Lexing.from_channel
+)
+"main.ml" 27 607 642 "main.ml" 27 607 647
+type(
+  in_channel
+)
+ident(
+  ext_ref Pervasives.stdin
+)
+"main.ml" 27 607 622 "main.ml" 27 607 647
+type(
+  Lexing.lexbuf
+)
+"main.ml" 30 695 701 "main.ml" 30 695 707
+type(
+  Ulex.token list
+)
+ident(
+  def tokens "main.ml" 33 758 760 "main.ml" 34 847 871
+)
+"main.ml" 30 695 710 "main.ml" 30 695 717
+type(
+  Lexing.lexbuf -> Ulex.token list
+)
+ident(
+  int_ref scanner "main.ml" 7 161 165 "main.ml" 7 161 172
+)
+"main.ml" 30 695 718 "main.ml" 30 695 724
+type(
+  Lexing.lexbuf
+)
+ident(
+  int_ref lexbuf "main.ml" 27 607 613 "main.ml" 27 607 619
+)
+"main.ml" 30 695 710 "main.ml" 30 695 724
+type(
+  Ulex.token list
+)
+"main.ml" 33 758 760 "main.ml" 33 758 769
+type(
+  (Ulex.token -> unit) -> Ulex.token list -> unit
+)
+ident(
+  ext_ref List.iter
+)
+"main.ml" 33 758 775 "main.ml" 33 758 777
+type(
+  Ulex.token
+)
+ident(
+  def tk "main.ml" 33 758 781 "main.ml" 33 758 836
+)
+"main.ml" 33 758 781 "main.ml" 33 758 795
+type(
+  out_channel ->
+  ((out_channel -> Ulex.token -> unit) -> Ulex.token -> unit, out_channel,
+   unit)
+  format -> (out_channel -> Ulex.token -> unit) -> Ulex.token -> unit
+)
+ident(
+  ext_ref Printf.fprintf
+)
+"main.ml" 33 758 796 "main.ml" 33 758 802
+type(
+  out_channel
+)
+ident(
+  ext_ref Pervasives.stdout
+)
+"main.ml" 33 758 803 "main.ml" 33 758 816
+type(
+  ((out_channel -> Ulex.token -> unit) -> Ulex.token -> unit, out_channel,
+   unit)
+  format
+)
+"main.ml" 33 758 817 "main.ml" 33 758 833
+type(
+  out_channel -> Ulex.token -> unit
+)
+ident(
+  ext_ref Ulex.print_token
+)
+"main.ml" 33 758 834 "main.ml" 33 758 836
+type(
+  Ulex.token
+)
+ident(
+  int_ref tk "main.ml" 33 758 775 "main.ml" 33 758 777
+)
+"main.ml" 33 758 781 "main.ml" 33 758 836
+type(
+  unit
+)
+"main.ml" 33 758 770 "main.ml" 33 758 837
+type(
+  Ulex.token -> unit
+)
+"main.ml" 33 758 838 "main.ml" 33 758 844
+type(
+  Ulex.token list
+)
+ident(
+  int_ref tokens "main.ml" 30 695 701 "main.ml" 30 695 707
+)
+"main.ml" 33 758 760 "main.ml" 33 758 844
+type(
+  unit
+)
+"main.ml" 34 847 849 "main.ml" 34 847 862
+type(
+  (unit, out_channel, unit) format -> unit
+)
+ident(
+  ext_ref Printf.printf
+)
+"main.ml" 34 847 863 "main.ml" 34 847 871
+type(
+  (unit, out_channel, unit) format
+)
+"main.ml" 34 847 849 "main.ml" 34 847 871
+type(
+  unit
+)
+"main.ml" 33 758 760 "main.ml" 34 847 871
+type(
+  unit
+)
+"main.ml" 30 695 697 "main.ml" 34 847 871
+type(
+  unit
+)
+"main.ml" 27 607 609 "main.ml" 34 847 871
+type(
+  unit
+)

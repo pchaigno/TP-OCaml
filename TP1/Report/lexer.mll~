@@ -17,4 +17,3 @@ rule token = parse
   | ">="  {UL_SUPEGAL}
   | "<="  {UL_INFEGAL}
   | eof     {UL_EOF}
-  | "(*" {comments lexbuf}

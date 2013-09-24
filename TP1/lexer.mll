@@ -3,7 +3,7 @@
 }
 rule token = parse
   | ([' ' '\t' '\n'])+  {token lexbuf}
-  | "/*" ([^'*'] | '*'+ [^'/''*'])* '*'* '/' {token lexbuf} 
+  | "/*" ([^'*'] | '*'+ [^'/''*'])* '*'+ '/' {token lexbuf} 
   | "et"  {UL_ET}
   | "ou"  {UL_OU}
   | ['A'-'Z' 'a'-'z']+ as ident {UL_IDENT ident}
@@ -17,4 +17,3 @@ rule token = parse
   | ">="  {UL_SUPEGAL}
   | "<="  {UL_INFEGAL}
   | eof     {UL_EOF}
-  | "(*" {comments lexbuf}

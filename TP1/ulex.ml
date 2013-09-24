@@ -1,9 +1,10 @@
 (** [token] is the type of the different lexical units. *)
-type token = UL_IDENT of string
+type token = 
+       |UL_IDENT of string
 	     | UL_ET
 	     | UL_OU
 	     | UL_EGAL
-             | UL_EOF
+       | UL_EOF
 	     | UL_PAROUV
 	     | UL_PARFERM 
 	     | UL_DIFF

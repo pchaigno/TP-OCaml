@@ -1,16 +1,16 @@
 (** [token] is the type of the different lexical units. *)
 type token = UL_IDENT of string
-	     | UL_ET
-	     | UL_OU
-	     | UL_EGAL
-             | UL_EOF
-	     | UL_PAROUV
-	     | UL_PARFERM 
-	     | UL_DIFF
-	     | UL_SUP
-	     | UL_INF
-	     | UL_SUPEGAL
-	     | UL_INFEGAL
+		| UL_ET
+		| UL_OU
+		| UL_EGAL
+		| UL_EOF
+		| UL_PAROUV
+		| UL_PARFERM 
+		| UL_DIFF
+		| UL_SUP
+		| UL_INF
+		| UL_SUPEGAL
+		| UL_INFEGAL
 
 (** [is_eof] : token  -> bool
     is_eof tk returns true if the lexical unit represents the end_of file.

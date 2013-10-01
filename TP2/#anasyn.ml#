@@ -45,8 +45,7 @@ let derivation = function
 
 (*let analyse_caractere = 
 	| (Vt v, p::rest) -> match p with 
-			| (Leaf v, rest)
-	| (Vn v, p::rest) -> (Node (v,analyse_mot ([v], rest)), rest)
+			| (Leaf v, rest)	| (Vn v, p::rest) -> (Node (v,analyse_mot ([v], rest)), rest)
 and analyse_mot = 
 	| ([], _) -> 
 	| (p::rest, ) ->

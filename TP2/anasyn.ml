@@ -28,6 +28,14 @@ type v = Vt of vt | Vn of vn;;
 
 type arbre_concret = Leaf of vt | Node of v * arbre_concret list;;
 
+type arbre_abstrait =
+  | Cond of arbre_abstrait * arbre_abstrait * arbre_abstrait
+  | Comp of string * vt * string
+  | Ou of arbre_abstrait * arbre_abstrait
+  | Et of arbre_abstrait * arbre_abstrait;;
+
+exception DerivationException of vnonterm * unite_lexicale;;
+
 let derivation = function
 	| (EXPR, (UL_PAROUV | UL_SI | UL_IDENT)) -> [Vn TERMB; Vn SUITEEXPR]
 	| (SUITEEXPR, UL_OU) -> [Vt UL_OU; Vn TERMB; Vn SUITEEXPR]
@@ -40,14 +48,15 @@ let derivation = function
 	| (FACTEURB, UL_IDENT) -> [Vn RELATION]
 	| (RELATION, UL_IDENT) -> [Vt UL_IDENT; Vn OP; Vt UL_IDENT]
 	| (OP, ((UL_EGAL | UL_DIFF | UL_SUP | UL_INF | UL_SUPEGAL | UL_INFEGAL) as x)) -> [Vt x]
-	| _ -> assert false;;
+	| (OP, UL) -> raise(DerivationException(OP, UL));;
 
-
-(*let analyse_caractere = 
-	| (Vt v, p::rest) -> match p with 
-			| (Leaf v, rest)
-	| (Vn v, p::rest) -> (Node (v,analyse_mot ([v], rest)), rest)
-and analyse_mot = 
-	| ([], _) -> 
-	| (p::rest, ) ->
-*)
+let rec analyse_caractere = function
+  | ((Vt (_)), liste) -> (Leaf (hd liste), tl liste)
+  | ((Vn (_ as nterm)), liste) -> let listeTerm = ma_derivation(nterm, hd liste) in
+					let (listeAC, listeUL) = analyse_mot(listeTerm, liste) in
+					(Node(nterm, listeAC), listeUL)
+and analyse_mot = function
+  | ([], liste) -> [], liste
+  | (listeTerm, listeUL) -> let (ac, nouvelleListe) = analyse_caractere(hd listeTerm,listeUL) in
+                            let (suiteListeAC, nouvelleListe) = analyse_mot(tl listeTerm, nouvelleListe) in
+                            (ac::suiteListeAC, nouvelleListe);;

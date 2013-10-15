@@ -1,0 +1,67 @@
+I0 = fermeture  = 				{	[Inst' -> .Inst],
+									[Inst -> .Id "<-" Expr]}
+
+I1 = transition(I0, Inst) = 	{	[Inst' -> Inst.]}
+
+I2 = transition(I0, Id) =		{	[Inst -> Id ."<-" Expr]}
+
+I3 = transition(I2, "<-") =		{	[Inst -> Id "<-" .Expr]
+									[Expr -> .Expr + Expr]
+									[Expr -> .Expr < Expr]
+									[Expr -> .Expr and Expr]
+									[Expr -> .( Expr )]
+									[Expr -> .Id]}
+
+I4 = transition(I3, Expr) = 	{	[Inst -> Id "<-" Expr.]
+									[Expr -> Expr .+ Expr]
+									[Expr -> Expr .< Expr]
+									[Expr -> Expr .and Expr]}
+
+I5 = transition(I3, () = 		{	[Expr -> ( .Expr )]}
+
+I6 = transition(I3, Id) = 		{	[Expr -> Id.]}
+
+I7 = transition(I4, +) = 		{	[Expr -> Expr + .Expr]
+									[Expr -> .Expr + Expr]
+									[Expr -> .Expr < Expr]
+									[Expr -> .Expr and Expr]
+									[Expr -> .( Expr )]
+									[Expr -> .Id]}
+
+I8 = transition(I4, <) = 		{	[Expr -> Expr < .Expr]
+									[Expr -> .Expr + Expr]
+									[Expr -> .Expr < Expr]
+									[Expr -> .Expr and Expr]
+									[Expr -> .( Expr )]
+									[Expr -> .Id]}
+
+I9 = transition(I4, and) = 		{	[Expr -> Expr and .Expr]
+									[Expr -> .Expr + Expr]
+									[Expr -> .Expr < Expr]
+									[Expr -> .Expr and Expr]
+									[Expr -> .( Expr )]
+									[Expr -> .Id]}
+
+I10 = transition(I5, Expr)		{	[Expr -> ( Expr .)]}
+
+
+I11 = transition(I7, Expr) = 	{	[[Expr -> Expr + Expr.]
+									[Expr -> Expr .+ Expr]
+									[Expr -> Expr .< Expr]
+									[Expr -> Expr .and Expr]}
+
+
+I12 = transition(I8, Expr) = 	{	[[Expr -> Expr < Expr.]
+									[Expr -> Expr .+ Expr]
+									[Expr -> Expr .< Expr]
+									[Expr -> Expr .and Expr]}
+
+I13 = transition(I9, Expr) = 	{	[[Expr -> Expr and Expr.]
+									[Expr -> Expr .+ Expr]
+									[Expr -> Expr .< Expr]
+									[Expr -> Expr .and Expr]}
+
+
+I14 = transition(I10, ))		{	[Expr -> ( Expr ).]}
+
+								

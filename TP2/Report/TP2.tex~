@@ -58,9 +58,9 @@
 \begin{split}
 \chevron{Fichier} & \rightarrow \chevron{Expr} EOF\\
 \chevron{Expr} & \rightarrow \chevron{Termb} \chevron{SuiteExpr}\\
-\chevron{SuiteExpr} & \rightarrow "ou" \chevron{Expr}\;|\;\epsilon\\
+\chevron{SuiteExpr} & \rightarrow "ou" \chevron{Expr}\;|\;?\\
 \chevron{Termb} & \rightarrow \chevron{Facteurb} \chevron{SuiteTermb}\\
-\chevron{SuiteTermb} & \rightarrow "et" \chevron{Termb}\;|\;\epsilon\\
+\chevron{SuiteTermb} & \rightarrow "et" \chevron{Termb}\;|\;?\\
 \chevron{Facteurb} & \rightarrow \chevron{Relation}\;|\;"(" \chevron{Expr} ")"\;|\;"si" \chevron{Expr} "alors" \chevron{Expr}\\ & "sinon" \chevron{Expr} "fsi"\\
 \chevron{Relation} & \rightarrow Ident \chevron{Op} Ident\\
 \chevron{Op} & \rightarrow "="\;|\;"<>"\;|\;"<"\;|\;">"\;|\;">="\;|\;"<="\\

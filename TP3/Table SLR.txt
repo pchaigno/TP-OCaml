@@ -45,7 +45,7 @@ I9 = transition(I4, and) = 		{	[Expr -> Expr and .Expr]
 I10 = transition(I5, Expr)		{	[Expr -> ( Expr .)]}
 
 
-I11 = transition(I7, Expr) = 	{	[[Expr -> Expr + Expr.]
+I11 = transition(I7, Expr) = 	{	[Expr -> Expr + Expr.]
 									[Expr -> Expr .+ Expr]
 									[Expr -> Expr .< Expr]
 									[Expr -> Expr .and Expr]}

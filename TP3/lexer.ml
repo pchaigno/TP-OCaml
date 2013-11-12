@@ -1,3 +1,8 @@
+# 1 "lexer.mll"
+ 
+	open Grammar
+
+# 6 "lexer.ml"
 let __ocaml_lex_tables = {
   Lexing.lex_base = 
    "\000\000\240\255\241\255\242\255\026\000\244\255\245\255\101\000\
@@ -329,89 +334,89 @@ let rec scanner lexbuf =
 and __ocaml_lex_scanner_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 4 "lexer.mll"
+# 8 "lexer.mll"
            (BEGIN)
-# 335 "lexer.ml"
-
-  | 1 ->
-# 5 "lexer.mll"
-       (PTVIRG)
 # 340 "lexer.ml"
 
-  | 2 ->
-# 6 "lexer.mll"
-         (END)
+  | 1 ->
+# 9 "lexer.mll"
+       (PTVIRG)
 # 345 "lexer.ml"
 
-  | 3 ->
-# 7 "lexer.mll"
-       (VIRG)
+  | 2 ->
+# 10 "lexer.mll"
+         (END)
 # 350 "lexer.ml"
 
-  | 4 ->
-# 8 "lexer.mll"
-         (INT)
+  | 3 ->
+# 11 "lexer.mll"
+       (VIRG)
 # 355 "lexer.ml"
 
-  | 5 ->
-# 9 "lexer.mll"
-          (BOOL)
+  | 4 ->
+# 12 "lexer.mll"
+         (INT)
 # 360 "lexer.ml"
 
-  | 6 ->
-# 10 "lexer.mll"
-        (AFFECT)
+  | 5 ->
+# 13 "lexer.mll"
+          (BOOL)
 # 365 "lexer.ml"
 
-  | 7 ->
-# 11 "lexer.mll"
-       (PLUS)
+  | 6 ->
+# 14 "lexer.mll"
+        (AFFECT)
 # 370 "lexer.ml"
 
-  | 8 ->
-# 12 "lexer.mll"
-       (INF)
+  | 7 ->
+# 15 "lexer.mll"
+       (PLUS)
 # 375 "lexer.ml"
 
-  | 9 ->
-# 13 "lexer.mll"
-         (AND)
+  | 8 ->
+# 16 "lexer.mll"
+       (INF)
 # 380 "lexer.ml"
 
-  | 10 ->
-# 14 "lexer.mll"
-       (PAROUV)
+  | 9 ->
+# 17 "lexer.mll"
+         (AND)
 # 385 "lexer.ml"
 
-  | 11 ->
-# 15 "lexer.mll"
-       (PARFERM)
+  | 10 ->
+# 18 "lexer.mll"
+       (PAROUV)
 # 390 "lexer.ml"
+
+  | 11 ->
+# 19 "lexer.mll"
+       (PARFERM)
+# 395 "lexer.ml"
 
   | 12 ->
 let
-# 16 "lexer.mll"
+# 20 "lexer.mll"
          ident
-# 396 "lexer.ml"
+# 401 "lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 16 "lexer.mll"
+# 20 "lexer.mll"
                (IDENT ident)
-# 400 "lexer.ml"
-
-  | 13 ->
-# 17 "lexer.mll"
-                   (scanner lexbuf)
 # 405 "lexer.ml"
 
-  | 14 ->
-# 18 "lexer.mll"
-       (EOF)
+  | 13 ->
+# 21 "lexer.mll"
+                   (scanner lexbuf)
 # 410 "lexer.ml"
 
-  | 15 ->
-# 19 "lexer.mll"
-     (ERROR)
+  | 14 ->
+# 22 "lexer.mll"
+       (EOF)
 # 415 "lexer.ml"
+
+  | 15 ->
+# 23 "lexer.mll"
+     (ERROR)
+# 420 "lexer.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; __ocaml_lex_scanner_rec lexbuf __ocaml_lex_state
 

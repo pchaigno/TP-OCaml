@@ -1,3 +1,7 @@
+{
+	open Grammar
+}
+
 let id = ['a'-'z'] ['a'-'z' '0'-'9']*
 
 rule scanner = parse 

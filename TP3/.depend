@@ -1,0 +1,9 @@
+grammar.cmo: definitions.cmo grammar.cmi
+grammar.cmx: definitions.cmx grammar.cmi
+main.cmo:
+main.cmx:
+definitions.cmo:
+definitions.cmx:
+lexer.cmo: grammar.cmi
+lexer.cmx: grammar.cmx
+grammar.cmi: definitions.cmo

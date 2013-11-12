@@ -1,0 +1,333 @@
+   0  $accept : %entry% $end
+
+   1  file : bloc EOF
+
+   2  bloc : BEGIN sdecl PTVIRG sinst END
+
+   3  sdecl : decl
+   4        | decl VIRG sdecl
+
+   5  decl : typ IDENT
+
+   6  typ : INT
+   7      | BOOL
+
+   8  sinst : inst
+   9        | inst PTVIRG sinst
+
+  10  inst : bloc
+  11       | IDENT AFFECT expr
+
+  12  expr : expr PLUS expr
+  13       | expr INF expr
+  14       | expr AND expr
+  15       | PAROUV expr PARFERM
+  16       | IDENT
+
+  17  %entry% : '\001' file
+
+state 0
+	$accept : . %entry% $end  (0)
+
+	'\001'  shift 1
+	.  error
+
+	%entry%  goto 2
+
+
+state 1
+	%entry% : '\001' . file  (17)
+
+	BEGIN  shift 3
+	.  error
+
+	file  goto 4
+	bloc  goto 5
+
+
+state 2
+	$accept : %entry% . $end  (0)
+
+	$end  accept
+
+
+state 3
+	bloc : BEGIN . sdecl PTVIRG sinst END  (2)
+
+	INT  shift 6
+	BOOL  shift 7
+	.  error
+
+	sdecl  goto 8
+	decl  goto 9
+	typ  goto 10
+
+
+state 4
+	%entry% : '\001' file .  (17)
+
+	.  reduce 17
+
+
+state 5
+	file : bloc . EOF  (1)
+
+	EOF  shift 11
+	.  error
+
+
+state 6
+	typ : INT .  (6)
+
+	.  reduce 6
+
+
+state 7
+	typ : BOOL .  (7)
+
+	.  reduce 7
+
+
+state 8
+	bloc : BEGIN sdecl . PTVIRG sinst END  (2)
+
+	PTVIRG  shift 12
+	.  error
+
+
+state 9
+	sdecl : decl .  (3)
+	sdecl : decl . VIRG sdecl  (4)
+
+	VIRG  shift 13
+	PTVIRG  reduce 3
+
+
+state 10
+	decl : typ . IDENT  (5)
+
+	IDENT  shift 14
+	.  error
+
+
+state 11
+	file : bloc EOF .  (1)
+
+	.  reduce 1
+
+
+state 12
+	bloc : BEGIN sdecl PTVIRG . sinst END  (2)
+
+	IDENT  shift 15
+	BEGIN  shift 3
+	.  error
+
+	bloc  goto 16
+	sinst  goto 17
+	inst  goto 18
+
+
+state 13
+	sdecl : decl VIRG . sdecl  (4)
+
+	INT  shift 6
+	BOOL  shift 7
+	.  error
+
+	sdecl  goto 19
+	decl  goto 9
+	typ  goto 10
+
+
+state 14
+	decl : typ IDENT .  (5)
+
+	.  reduce 5
+
+
+state 15
+	inst : IDENT . AFFECT expr  (11)
+
+	AFFECT  shift 20
+	.  error
+
+
+state 16
+	inst : bloc .  (10)
+
+	.  reduce 10
+
+
+state 17
+	bloc : BEGIN sdecl PTVIRG sinst . END  (2)
+
+	END  shift 21
+	.  error
+
+
+state 18
+	sinst : inst .  (8)
+	sinst : inst . PTVIRG sinst  (9)
+
+	PTVIRG  shift 22
+	END  reduce 8
+
+
+state 19
+	sdecl : decl VIRG sdecl .  (4)
+
+	.  reduce 4
+
+
+state 20
+	inst : IDENT AFFECT . expr  (11)
+
+	IDENT  shift 23
+	PAROUV  shift 24
+	.  error
+
+	expr  goto 25
+
+
+state 21
+	bloc : BEGIN sdecl PTVIRG sinst END .  (2)
+
+	.  reduce 2
+
+
+state 22
+	sinst : inst PTVIRG . sinst  (9)
+
+	IDENT  shift 15
+	BEGIN  shift 3
+	.  error
+
+	bloc  goto 16
+	sinst  goto 26
+	inst  goto 18
+
+
+state 23
+	expr : IDENT .  (16)
+
+	.  reduce 16
+
+
+state 24
+	expr : PAROUV . expr PARFERM  (15)
+
+	IDENT  shift 23
+	PAROUV  shift 24
+	.  error
+
+	expr  goto 27
+
+
+state 25
+	inst : IDENT AFFECT expr .  (11)
+	expr : expr . PLUS expr  (12)
+	expr : expr . INF expr  (13)
+	expr : expr . AND expr  (14)
+
+	PLUS  shift 28
+	INF  shift 29
+	AND  shift 30
+	PTVIRG  reduce 11
+	END  reduce 11
+
+
+state 26
+	sinst : inst PTVIRG sinst .  (9)
+
+	.  reduce 9
+
+
+state 27
+	expr : expr . PLUS expr  (12)
+	expr : expr . INF expr  (13)
+	expr : expr . AND expr  (14)
+	expr : PAROUV expr . PARFERM  (15)
+
+	PLUS  shift 28
+	INF  shift 29
+	AND  shift 30
+	PARFERM  shift 31
+	.  error
+
+
+state 28
+	expr : expr PLUS . expr  (12)
+
+	IDENT  shift 23
+	PAROUV  shift 24
+	.  error
+
+	expr  goto 32
+
+
+state 29
+	expr : expr INF . expr  (13)
+
+	IDENT  shift 23
+	PAROUV  shift 24
+	.  error
+
+	expr  goto 33
+
+
+state 30
+	expr : expr AND . expr  (14)
+
+	IDENT  shift 23
+	PAROUV  shift 24
+	.  error
+
+	expr  goto 34
+
+
+state 31
+	expr : PAROUV expr PARFERM .  (15)
+
+	.  reduce 15
+
+
+state 32
+	expr : expr . PLUS expr  (12)
+	expr : expr PLUS expr .  (12)
+	expr : expr . INF expr  (13)
+	expr : expr . AND expr  (14)
+
+	.  reduce 12
+
+
+state 33
+	expr : expr . PLUS expr  (12)
+	expr : expr . INF expr  (13)
+	expr : expr INF expr .  (13)
+	expr : expr . AND expr  (14)
+
+	PLUS  shift 28
+	PTVIRG  reduce 13
+	END  reduce 13
+	INF  reduce 13
+	AND  reduce 13
+	PARFERM  reduce 13
+
+
+state 34
+	expr : expr . PLUS expr  (12)
+	expr : expr . INF expr  (13)
+	expr : expr . AND expr  (14)
+	expr : expr AND expr .  (14)
+
+	PLUS  shift 28
+	INF  shift 29
+	PTVIRG  reduce 14
+	END  reduce 14
+	AND  reduce 14
+	PARFERM  reduce 14
+
+
+18 terminals, 10 nonterminals
+18 grammar rules, 35 states

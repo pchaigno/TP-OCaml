@@ -16,4 +16,4 @@ type token =
   | ERROR
 
 val file :
-  (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> bool
+  (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> Definitions.arbabstrait

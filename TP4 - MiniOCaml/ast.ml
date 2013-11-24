@@ -16,7 +16,7 @@ type ml_expr =
 	| Ml_app of ml_expr * ml_expr
 	| Ml_let of string * ml_expr * ml_expr
 	| Ml_letrec of string * ml_expr * ml_expr
-	
+
 and ml_pattern =
 	| Ml_pattern_var of string
 	| Ml_pattern_bool of bool

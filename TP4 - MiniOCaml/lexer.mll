@@ -8,10 +8,13 @@
 			"true", TRUE;
 			"false", FALSE;
 			"fun", FUN;
-			"function", FUN;
+			(*"function", FUN;*)
 			"if", IF;
 			"else", ELSE;
-			"then", THEN
+			"then", THEN;
+			"rec", REC;
+			"fst", FST;
+			"snd", SND
 		]
 }
 

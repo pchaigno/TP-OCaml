@@ -3,7 +3,7 @@ open Ast
 %}
 
 %token <int> INT
-%token LET IN EGAL PLUS MOINS MULT PAROUV PARFERM TRUE FALSE INF FUN ARROW VIRG CONCAT NIL PIPE IF THEN ELSE
+%token LET REC IN EGAL FST SND PLUS MOINS MULT PAROUV PARFERM TRUE FALSE INF FUN ARROW VIRG CONCAT NIL PIPE IF THEN ELSE
 %token <string> IDENT
 %token EOF END_OF_EXPRESSION
 
@@ -33,17 +33,18 @@ main:
 expr:
 	| simple_expr { $1 }
 	| LET IDENT EGAL expr IN expr { Ml_let ($2, $4, $6) }
+	| LET REC IDENT EGAL funct IN expr { Ml_letrec ($3, $5, $7) }
 	| expr PLUS expr { Ml_binop (Ml_add, $1, $3) }
 	| expr MOINS expr { Ml_binop (Ml_sub, $1, $3) }
 	| expr MULT expr { Ml_binop (Ml_mult, $1, $3) }
 	| expr EGAL expr { Ml_binop (Ml_eq, $1, $3) }
 	| expr INF expr { Ml_binop (Ml_less, $1, $3) }
+	| FST expr { Ml_unop (Ml_fst, $2) }
+	| SND expr { Ml_unop (Ml_snd, $2) }
 	| PAROUV expr PARFERM { $2 }
 	| funct { $1 }
+	| expr expr { Ml_app ($1, $2) }
 	| IF expr THEN expr ELSE expr { Ml_if ($2, $4, $6) }
-
-funct:
-	| FUN debut_pattern suite_pattern { Ml_fun ($2::$3) }
 
 simple_expr:
 	| INT { Ml_int $1 }
@@ -57,6 +58,9 @@ list:
 	| simple_expr CONCAT simple_expr { Ml_cons ($1, $3) }
 	| simple_expr CONCAT IDENT { Ml_cons ($1, (Ml_var $3)) }
 	| NIL { Ml_nil }
+
+funct:
+	| FUN debut_pattern suite_pattern { Ml_fun ($2::$3) }
 
 
 debut_pattern:

@@ -62,7 +62,6 @@ list:
 funct:
 	| FUN debut_pattern suite_pattern { Ml_fun ($2::$3) }
 
-
 debut_pattern:
 	| pattern ARROW expr { ($1, $3) }
 	| PIPE pattern ARROW expr { ($2, $4) }

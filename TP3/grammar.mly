@@ -1,6 +1,11 @@
 %{
 	open Definitions
-	let parse_error = raise Exception (Parsing.symbol_start_pos.pos_lnum, Parsing.symbol_start_pos.pos_cnum);;
+	let parse_error s =
+		let pos = Parsing.symbol_start_pos() in
+		let (lineNum, colNum) = (pos.Lexing.pos_lnum, pos.Lexing.pos_cnum) in
+		print_endline ("Parse error a la ligne " ^ (string_of_int lineNum) ^ ", caractere " ^ (string_of_int colNum));;
+
+
 %}
 
 %token <string> IDENT

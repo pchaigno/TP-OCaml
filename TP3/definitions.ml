@@ -9,6 +9,5 @@ type arbabstrait =
    |  Plus of arbabstrait * arbabstrait
    |  Inf of arbabstrait * arbabstrait
    |  And of arbabstrait * arbabstrait
-   |  Affectation of string * arbabstrait;;  
-
- type exception = Exception of int * int;;
+   |  Affectation of string * arbabstrait
+   |  Exception of string;; 

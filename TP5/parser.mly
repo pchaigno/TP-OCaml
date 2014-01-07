@@ -62,24 +62,24 @@ expr:
  | FUNCTION pattern_expr_list { Ml_fun (fst $2) , snd $2 }
  | application { List.fold_left (fun res a -> Ml_app(res, a)) (List.hd (fst $1)) (List.tl (fst $1)) , snd $1 }
  | LET IDENT EQUAL expr IN expr { Ml_let($2, fst $4, fst $6) , StrSet.union (snd $4) (snd $6) }
- | LET REC IDENT EQUAL expr IN expr { Ml_letrec($3, failwith "let rec type expected", fst $5, fst $7) , StrSet.union (snd $5) (snd $7) }
+ | LET REC IDENT DOUBLEPOINT type EQUAL expr IN expr { Ml_letrec($3, TypEnv.singleton $3 $5, fst $5, fst $7) , StrSet.union (snd $5) (snd $7) }
 
 simple_expr:
  | INT { Ml_int $1, StrSet.empty }
  | bool { Ml_bool $1, StrSet.empty }
- | LEFT_BRACKET RIGHT_BRACKET  { Ml_nil (failwith "[] : type expected"), StrSet.empty }
- | IDENT { Ml_var $1 , StrSet.singleton $1 }
+ | LEFT_BRACKET RIGHT_BRACKET DOUBLEPOINT type { Ml_nil (TypeEnv.empty), StrSet.empty }
+ | IDENT { Ml_var $1, StrSet.singleton $1 }
 
 bool:
  | FALSE { false }
  | TRUE  { true }
 
 pattern:
- | IDENT { Ml_pattern_var ($1,failwith "pattern variable: type expected") , StrSet.singleton $1} 
+ | IDENT DOUBLEPOINT type { Ml_pattern_var ($1, TypEnv.singleton $1 $3 ), StrSet.singleton $1} 
  | INT   { Ml_pattern_int $1 , StrSet.empty }
  | bool  { Ml_pattern_bool $1 , StrSet.empty }
  | LEFT_PAREN pattern COMMA pattern RIGHT_PAREN {Ml_pattern_pair(fst $2, fst $4), StrSet.union (snd $2) (snd $4)  }
- | LEFT_BRACKET RIGHT_BRACKET { Ml_pattern_nil (failwith "pattern []: type expected") , StrSet.empty }
+ | LEFT_BRACKET RIGHT_BRACKET DOUBLEPOINT type { Ml_pattern_nil (TypEnv.empty) , StrSet.empty }
  | pattern CONS pattern { Ml_pattern_cons(fst $1, fst $3), StrSet.union (snd $1) (snd $3) }
 
 pattern_expr_list:
@@ -100,4 +100,9 @@ application_next:
  | simple_expr_or_parenthesized_expr application_next { fst $1 :: fst $2 , StrSet.union (snd $1) (snd $2) }
  | { [] , StrSet.empty }
 
-
+ type:
+ | INT {Tint}
+ | BOOL {Tbool}
+ | type LIST {Tlist $1}  
+ | LEFT_PAREN type COMMA type RIGHT_PAREN {Tpair ($2, $4)}
+ | type ARROW type {Tfun ($1, $3)}

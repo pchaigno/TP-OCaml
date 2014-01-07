@@ -14,7 +14,11 @@
 	"true", TRUE;
 	"false", FALSE;
 	"fst", FST;
-	"snd", SND;
+  "snd", SND;
+  "list", LIST;
+  "int", INT;
+  "bool", BOOL;
+  ";", DOUBLEPOINT
       ]
 }
 

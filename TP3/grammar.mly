@@ -24,14 +24,14 @@ file:
 	| bloc EOF {$1};
 
 bloc:
-	| BEGIN sdecl PTVIRG sinst END {Bloc($2,$4)};
+	| BEGIN sdecl PTVIRG sinst END {Bloc($2, $4)};
 
 sdecl:
 	| decl {[$1]}
 	| decl VIRG sdecl {$1::$3};
 
 decl:
-	| typ IDENT {Declaration($1,$2)};
+	| typ IDENT {Declaration($1, $2)};
 
 typ:
 	| INT {Int}
@@ -43,7 +43,7 @@ sinst:
 
 inst:
 	| bloc {$1}
-	| IDENT AFFECT expr {Affectation($1,$3)};
+	| IDENT AFFECT expr {Affectation($1, $3)};
 
 expr:
 	| expr PLUS expr {Plus($1,$3)}

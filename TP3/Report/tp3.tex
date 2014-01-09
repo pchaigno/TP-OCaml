@@ -1,0 +1,122 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{graphicx}
+\usepackage{color}
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+\definecolor{teal}{rgb}{0.0,0.5,0.5}
+\definecolor{violet}{rgb}{0.5,0,0.5}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\lstloadlanguages{caml}
+\lstdefinestyle{listing}{
+  language=[Objective]Caml,
+  captionpos=t,
+  inputencoding=utf8/latin1,
+  extendedchars=true,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  breakatwhitespace=true,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  basicstyle=\footnotesize\ttfamily,
+  backgroundcolor=\color{grey},
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{teal},
+  identifierstyle=\color{black},
+  stringstyle=\color{red},
+  numberstyle=\color{violet},
+}
+\lstset{style=listing}
+\newcommand{\chevron}[1]{<\! \! #1 \! \!>}
+
+\title{TP3 - Analyse syntaxique ascendante, ocamllex et ocamlyacc}
+\author{\textsc{Raphaël Baron} - \textsc{Paul Chaignon}}
+\date{19 novembre 2013}
+
+\begin{document}
+
+	\maketitle
+
+	\section{Préparation du TP}
+	
+		\subsection{Table SLR}
+
+			\begin{table}[h]
+				\begin{center} 
+					\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+						\hline
+						& Ident & $\leftarrow$ & $+$ & $<$ & and & ( & ) & \$ & Inst & E \\
+						\hline
+						I0 & S2 &  &  &  &  &  &  &  & 1 &  \\
+						\hline  
+						I1 &  &  &  &  &  &  &  &  Acc &  &  \\
+						\hline  
+						I2 &  & S3 &  &  &  &  &  &  &  &  \\
+						\hline  
+						I3 & S6 &  &  &  &  & S5 &  &  &  & 4 \\
+						\hline
+						I4 &  &  & S7/\sout{R1} & S8/\sout{R1} & S9/\sout{R1} &  & R1 & R1 &  &  \\
+						\hline
+						I5 &  &  &  &  &  &  &  &  &  &  10\\
+						\hline
+						I6 &  &  & R0 & R0 & R0 &  & R0 & R0 &  &  \\
+						\hline
+						I7 & S6 &  &  &  &  & S5 &  &  &  & 11 \\
+						\hline
+						I8 & S6 &  &  &  &  & S5 &  &  &  & 12 \\
+						\hline
+						I9 & S6 &  &  &  &  & S5 &  &  &  & 13 \\
+						\hline
+						I10 &  &  &  &  &  &  & S14 &  &  &  \\
+						\hline
+						I11 &  &  & \sout{S7}/R1 & \sout{S8}/R1 & \sout{S9}/R1 &  & R1 & R1 &  &  \\
+						\hline
+						I12 &  &  & S7/\sout{R2} & \sout{S8}/R2 & \sout{S9}/R2 &  & R2 & R2 &  &  \\
+						\hline
+						I13 &  & & S7/\sout{R3} & S8/\sout{R3} & \sout{S9}/R3 &  & R3 & R3 &  &  \\
+						\hline
+						I14 &  & & R4 & R4 & R4 &  & R4 & R4 &  &  \\
+						\hline
+					\end{tabular}
+					\caption{Table SLR avec conflits}
+				\end{center}
+			\end{table}
+
+		\subsection{Résolution des conflits}
+			Pour résoudre les confilts, on utilise le fait que le \textit{And} a une priorité moins importante que le $\textit{<}$ qui a aussi une priorité moins importante que le $\textit{+}$.
+
+			
+
+	\section{Questions}
+	
+		\subsection*{Question 1}
+			L'utilisation d'un crible avec ocamlex permet de réduire le nombre d'états (et de transitions).
+
+		\subsection*{Question 2}
+			Il n'y a pas besoin de lever les ambiguités pour une grammaire LR mais l'analyseur ascendant pour la grammaire LR est plus compliqué.
+
+		\subsection*{Question 3}
+			Si la colonne d'un terminal est vide, cela signifie que ce terminal ne sera jamais rencontré.
+
+
+	\section{Codes source}
+	
+		\lstinputlisting[caption=grammar.mly]{../grammar.mly}
+		\lstinputlisting[caption=lexer.mll]{../lexer.mll}
+		\lstinputlisting[caption=arbre.ml]{../definitions.ml}
+
+\end{document}
